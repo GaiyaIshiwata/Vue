@@ -5,11 +5,11 @@
     </header>
 
     <main>
-      <maincontents></maincontents>
+      <maincontents :isActive="activetab"></maincontents>
     </main>
 
     <footer class="footer">
-      <myfooter></myfooter>
+      <myfooter @sendActiveTab="setActiveTab"></myfooter>
     </footer>
   </div>
 </template>
@@ -27,12 +27,12 @@ export default {
   },
   data() {
     return {
-      msg: "Hello World!"
+      activetab: 1
     };
   },
   methods: {
-    clear() {
-      this.msg = "";
+    setActiveTab(tab) {
+      this.activetab = tab;
     }
   }
 };
