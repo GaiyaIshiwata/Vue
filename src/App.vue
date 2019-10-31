@@ -1,29 +1,29 @@
 <template>
   <div>
-    <header>
+    <header class="header">
       <myheader></myheader>
     </header>
 
-    <p v-if="msg.length > 0">{{msg}}</p>
-    <p v-else>no text</p>
-    <input type="text" v-model="msg" />
-    <button @click="clear()">clear</button>
+    <main>
+      <maincontents></maincontents>
+    </main>
 
-    <footer>
+    <footer class="footer">
       <myfooter></myfooter>
     </footer>
   </div>
 </template>
 
-
-
-
 <script>
 import myheader from "./components/myheader";
+import myfooter from "./components/myfooter";
+import maincontents from "./components/maincontents";
 
 export default {
   components: {
-    myheader
+    myheader,
+    myfooter,
+    maincontents
   },
   data() {
     return {
@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import "./css/ress.css";
-@import "./css/style.css";
+@import "./css/style.scss";
 </style>

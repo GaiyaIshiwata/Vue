@@ -1,15 +1,23 @@
 <template>
-  <div class="footer-menu">
-    <ul class="menu-list">
-      <li class="menu-item">
-        <i class="fas fa-home"></i>
-      </li>
-      <li class="menu-item">
-        <i class="fas fa-heart"></i>
-      </li>
-      <li class="menu-item">
-        <i class="fas fa-clipboard-list"></i>
-      </li>
-    </ul>
+  <div class="wrapper">
+    <div class="footer-menu">
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div id="home" class="item">
+            <font-awesome-icon icon="home" class="item-icon" />
+          </div>
+        </li>
+        <li class="menu-item">
+          <div id="fav" class="item">
+            <font-awesome-icon icon="heart" class="item-icon" />
+          </div>
+        </li>
+        <li class="menu-item">
+          <div id="todo" class="item">
+            <font-awesome-icon icon="clipboard" class="item-icon" />
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
