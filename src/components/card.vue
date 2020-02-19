@@ -3,16 +3,16 @@
     <ul class="card-list">
       <li class="card-item" v-for="article of articles">
         <article class="card">
-          <a v-bind:href="article.url" target="_blank">
+          <a v-bind:href="article.url" target="_blank" class="card-link">
             <div class="card-header">
               <h2 class="card-title">{{ article.title }}</h2>
             </div>
             <div class="card-body">
-              <div class="card-description">ダミー記事詳細</div>
+              <div class="card-description"></div>
             </div>
           </a>
           <div class="card-footer">
-            <p class="card-date">date</p>
+            <p class="card-date">{{ article.date }}</p>
             <div class="card-buttons">
               <div class="card-button" v-on:click="addFavList(article)">
                 <font-awesome-icon icon="heart" class="item-icon" />
@@ -26,9 +26,7 @@
       </li>
     </ul>
   </div>
-</template>
-
-<script>
+</template><script>
 import RSSParser from "../../node_modules/rss-parser/dist/rss-parser.min.js";
 
 const feedURL = "https://b.hatena.ne.jp/hotentry/it.rss";
@@ -43,25 +41,35 @@ export default {
       articles: []
     };
   },
+
   methods: {
     getFeed() {
       const that = this;
       const testURL = CORS_PROXY + feedURL;
+
       parser.parseURL(testURL, function(err, feed) {
         const feedArray = feed.items;
 
         feedArray.forEach(feed => {
+          let formatedDate = feed.date.replace(/(-|T)/g, "/");
+          formatedDate = formatedDate.replace("Z", "");
+          console.log(feed);
           const article = {
             title: feed.title,
-            url: feed.link
+            url: feed.link,
+            date: formatedDate,
+            description: feed.content
           };
+
           that.articles.push(article);
         });
       });
     },
+
     addFavList(target) {
       this.$emit("addFav", target);
     },
+
     copyOverride(articleData) {
       document.addEventListener(
         "copy",
@@ -69,9 +77,13 @@ export default {
           e.clipboardData.setData("text/plain", articleData);
           e.preventDefault();
         },
-        { once: true }
+
+        {
+          once: true
+        }
       );
     },
+
     copyArticle(article) {
       const data = article.title + "  " + article.url;
       this.copyOverride(data);
@@ -79,6 +91,7 @@ export default {
       alert("コピーしました");
     }
   },
+
   created: function() {
     this.getFeed();
   }

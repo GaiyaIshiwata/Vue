@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import {db} from '../plugins/firebase';
 export default {
   props: {
     favlist: {
@@ -57,6 +58,11 @@ export default {
       this.copyOverride(data);
       document.execCommand("copy");
       alert("コピーしました");
+    }
+  },
+  firestore(){
+    return {
+    dbfavContent: db.collection('favContent')
     }
   },
   created: function() {}

@@ -48,18 +48,28 @@ a {
 //----card----
 
 .card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &-link {
+    flex: 1 1 auto;
+  }
 
   &-header {
     margin-bottom: 1.25rem;
     padding: 0 1rem;
+    display: flex;
   }
 
   &-body {
     padding: 0 1rem;
+
   }
 
   &-footer {
     padding: 0 1rem;
+    width: 100%;
   }
 
   &-list {
@@ -75,6 +85,7 @@ a {
     border: 3px #ECECEC solid;
     border-radius: 8px;
     margin-bottom: 35px;
+
   }
 
   &-image {

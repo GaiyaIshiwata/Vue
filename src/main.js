@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import './plugins/firebase'
 import App from "./App.vue";
 
 //fontawesome------------------
